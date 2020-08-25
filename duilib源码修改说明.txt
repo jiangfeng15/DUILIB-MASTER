@@ -1,0 +1,18 @@
+1、duilib源码修改部分
+	在WindowImplBase.cpp文件中添加将return ResponseDefaultKeyEvent(wParam);注释，替换成return 0;
+	LRESULT WindowImplBase::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM /*lParam*/, bool& /*bHandled*/)
+	{
+		if (uMsg == WM_KEYDOWN)
+		{
+			switch (wParam)
+			{
+			case VK_RETURN:
+			case VK_ESCAPE:
+				return 0;
+				//return ResponseDefaultKeyEvent(wParam);
+			default:
+				break;
+			}
+		}
+		return FALSE;
+	}
